@@ -1,9 +1,5 @@
----
-title: "Reproducible Research: Peer Assessment 1 - Zarmeen Nasim"
-output: 
-  html_document:
-    keep_md: true
----
+## Reproducible Research: Peer Assessment 1 - Zarmeen Nasim
+
 ## Introduction
 
 It is now possible to collect a large amount of data about personal
@@ -61,7 +57,7 @@ head(data)
 steps_data <- aggregate(steps ~ date, data=data, sum, na.rm = TRUE)
 hist(steps_data$steps, main = paste("Total Steps Each Day"), col="blue", xlab="Number of Steps")
 ```
-
+![plot of chunk unnamed-chunk-1-1](./instructions_fig/unnamed-chunk-1-1.png) 
 ## What is the average daily activity pattern?
 ```{r,echo=TRUE}
 steps_interval <- aggregate(steps ~ interval, data, mean)
@@ -69,7 +65,7 @@ plot(steps_interval$interval,steps_interval$steps, type="l", xlab="Interval", yl
 max_interval <- steps_interval[which.max(steps_interval$steps),1]
 print(paste("The maximum number of steps in a five minute interval was: ", max_interval))
 ```
-
+![plot of chunk unnamed-chunk-1-2](./instructions_fig/unnamed-chunk-1-2.png) 
 ## Imputing missing values
 ```{r,echo=TRUE}
 imputed_data <- data
@@ -90,7 +86,7 @@ bsteps_median <- median(imputed_data$steps)
 print(paste("The mean is: ", bsteps_mean))
 print(paste("The median is: ", bsteps_median))
 ```
-
+![plot of chunk unnamed-chunk-1-3](./instructions_fig/unnamed-chunk-1-3.png) 
 ## Are there differences in activity patterns between weekdays and weekends?
 ```{r,echo=TRUE}
 
@@ -101,3 +97,4 @@ library(lattice)
 plotdata <- aggregate(steps ~ interval + weekend,imputed_data, mean)
 xyplot(steps ~ interval | factor(weekend), data=plotdata, aspect=1/3, type="l")
 ```
+![plot of chunk unnamed-chunk-1-4](./instructions_fig/unnamed-chunk-1-4.png) 
